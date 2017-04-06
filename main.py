@@ -18,7 +18,8 @@ if __name__ == '__main__':
 
     # start and get contents of stream
     vs = PiVideoStream().start()
-
+    vs.camera.rotation = -90
+    
     # create blinds object
     blinds = Blinds()
 

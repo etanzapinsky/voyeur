@@ -5,16 +5,17 @@ import time
 from subprocess import call
 
 PIN = 18
-FORWARDS = 1000
-STOP = 1500
-BACKWARDS = 2000
+
+NEUTRAL = 1500
+DOWN = 200
+UP = -200
 
 # time in seconds
-SERVO_RUNTIME = 5
+SERVO_RUNTIME = 4
 
 class Blinds:
     def __init__(self):
-        self.opened = False
+        self.opened = True # start with blinds at neutral
         self.closed = False
         self.moving = False
 
@@ -33,12 +34,12 @@ class Blinds:
         # set that we're moving
         self.moving = True
 
-        self.run_servo(BACKWARDS)
+        self.run_servo(NEUTRAL + UP)
 
         # sleep to let the servo move
         time.sleep(SERVO_RUNTIME)
 
-        self.run_servo(STOP)
+        self.run_servo(NEUTRAL)
 
         # set that we've finished moving
         self.moving = False
@@ -58,12 +59,12 @@ class Blinds:
         # set that we're moving
         self.moving = True
         
-        self.run_servo(FORWARDS)
+        self.run_servo(NEUTRAL + DOWN)
 
         # sleep to let the servo move
         time.sleep(SERVO_RUNTIME)
 
-        self.run_servo(STOP)
+        self.run_servo(NEUTRAL)
 
         # set that we've finished moving
         self.moving = False

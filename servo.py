@@ -40,7 +40,7 @@ def main():
 
     print("done")
 
-    call(["pigs", "s", "{}".format(PIN), "{}".format(0)])
+    call(["pigs", "s", "{}".format(PIN), "{}".format()])
 
     pwm.cancel()
 

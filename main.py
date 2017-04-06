@@ -7,6 +7,7 @@ import random
 from datetime import datetime, timedelta
 
 from mypivideostream import PiVideoStream
+from blinds import Blinds
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Display picamera output on display.')
@@ -18,7 +19,9 @@ if __name__ == '__main__':
     # start and get contents of stream
     vs = PiVideoStream().start()
 
-    i = 0
+    # create blinds object
+    blinds = Blinds()
+
     while(True):
         image = vs.read()
         if image is None:
@@ -38,8 +41,9 @@ if __name__ == '__main__':
         rects = vs.read_rects()
         
         if len(rects) > 0:
-            i+=1
-            print('face match! i:{}'.format(i))
+            blinds.close()
+        else:
+            blinds.open ()
 
 
     cv2.destroyAllWindows()

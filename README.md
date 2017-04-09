@@ -1,7 +1,7 @@
 # voyeur
 Voyuer is the code used to control a robotic Venetian blind. It consists of a Raspberry Pi 3, a camera and screen to display the camera output. It using OpenCV to control a servo to close a Venetion blind when it detects a face and open a Venetian blind when it doesn't detect a face.
 
-The goal of the work is to question how we interact with technology. What happens if we think of our screens as windows and the very act of looking through them is voyueristic? What happens when they start reacting to us and look back?
+The goal of the work is to question how we interact with technology. Is looking at our screens similar to looking through windows? What permission do we have to look through these windows? Who is controlling what we see through these screens? What happens if the screens react to our presence?
 
 _NOTE: The project is still in development and this code/instructions are for a very early prototype._
 
@@ -30,6 +30,8 @@ sudo apt-get install pigpio
 ```
 
 Start pigpio daemon process so the library can communicate with the gpio pins.
+```
+sudo pigpiod
 ```
 
 ### Setup Harware

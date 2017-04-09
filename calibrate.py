@@ -1,11 +1,10 @@
 import time
 
-NEUTRAL = 1500
-DOWN = 200
-UP = -200
+from blinds import Blinds, NEUTRAL, UP, DOWN
 
-from blinds import Blinds
-
+# janky way to calibrate blinds to be open/closed to the right amount
+# edit this file to change UP/DOWN to move blinds in desired direction,
+# save and then run
 def main():
     blinds = Blinds()
     blinds.run_servo(NEUTRAL + UP)

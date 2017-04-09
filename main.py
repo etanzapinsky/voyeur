@@ -1,19 +1,10 @@
-# import the necessary packages
-import time
 import numpy
 import cv2
-import argparse
-import random
-from datetime import datetime, timedelta
 
 from mypivideostream import PiVideoStream
 from blinds import Blinds
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Display picamera output on display.')
-    parser.add_argument('--debug', dest='debug', action='store_true', help='show opencv screen to debug')
-    args = parser.parse_args()
- 
     cv2.namedWindow("Frame", cv2.WINDOW_NORMAL)
 
     # start and get contents of stream
@@ -41,17 +32,10 @@ if __name__ == '__main__':
         # get matching rects
         rects = vs.read_rects()
         
+        # there is a face in the frame so there are bounding rectangles that match
         if len(rects) > 0:
             blinds.close()
         else:
-            blinds.open ()
-
+            blinds.open()
 
     cv2.destroyAllWindows()
-
-    def cleanup(display, stream):
-        print('cleaning up')
-        display.cleanup()
-        stream.stop()
-
-    # atexit.register(cleanup, display=display, stream=vs)

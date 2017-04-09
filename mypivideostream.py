@@ -4,10 +4,12 @@ import cv2
 from picamera.array import PiRGBArray
 from picamera import PiCamera
 from threading import Thread
-from datetime import datetime, timedelta
 
-FACE_DETECTOR_PATH  = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'haarcascade_frontalface_default.xml')
+# path to training data for HAAR face classifier
+FACE_DETECTOR_PATH  = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                                   'haarcascade_frontalface_default.xml')
 
+# http://www.pyimagesearch.com/2015/12/21/increasing-webcam-fps-with-python-and-opencv/
 class PiVideoStream:
     def __init__(self, resolution=(640, 480), framerate=32, save_image_interval=1):
         '''
@@ -44,6 +46,8 @@ class PiVideoStream:
 
             # convert the image to grayscale, load the face cascade detector,
             # and detect faces in the image
+            # Using data trained from here:
+            #   http://www.pyimagesearch.com/2015/05/11/creating-a-face-detection-api-with-python-and-opencv-in-just-5-minutes/
             image = cv2.cvtColor(self.frame, cv2.COLOR_BGR2GRAY)
             detector = cv2.CascadeClassifier(FACE_DETECTOR_PATH)
             rects = detector.detectMultiScale(image, scaleFactor=1.1, minNeighbors=5,minSize=(30, 30), flags=cv2.cv.CV_HAAR_SCALE_IMAGE)
